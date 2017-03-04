@@ -1,0 +1,13 @@
+nr:
+  image: nodered/node-red-docker
+  ports:
+   - "1880:1880"
+  volumes:
+   - ./nr/data:/data
+  links:
+   - mosquitto
+mosquitto:
+  image: jllopis/mosquitto
+  ports:
+   - 1883:1883
+   - 9883:9883

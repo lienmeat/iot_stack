@@ -1,0 +1,200 @@
+[
+  {
+    "id": "d44cc897.dc80c8",
+    "type": "tab",
+    "label": "Flow 1"
+  },
+  {
+    "id": "ed3e63d1.2fb88",
+    "type": "http in",
+    "z": "d44cc897.dc80c8",
+    "name": "test",
+    "url": "/test/:device_name/:device_id",
+    "method": "get",
+    "swaggerDoc": "",
+    "x": 87,
+    "y": 48,
+    "wires": [
+      [
+        "4520ba37.ced3f4"
+      ]
+    ]
+  },
+  {
+    "id": "4520ba37.ced3f4",
+    "type": "function",
+    "z": "d44cc897.dc80c8",
+    "name": "parse",
+    "func": "var device = msg.req.params.device_name;\nvar id = msg.req.params.device_id;\nmsg.topic = device + \"_\" + id;\nmsg.payload = \"test\";\nnode.log(msg.topic);\nreturn msg;",
+    "outputs": 1,
+    "noerr": 0,
+    "x": 243,
+    "y": 48,
+    "wires": [
+      [
+        "76e71f30.5ce2"
+      ]
+    ]
+  },
+  {
+    "id": "76e71f30.5ce2",
+    "type": "mqtt out",
+    "z": "d44cc897.dc80c8",
+    "name": "",
+    "topic": "",
+    "qos": "",
+    "retain": "",
+    "broker": "5178f1a8.e135a",
+    "x": 405,
+    "y": 48,
+    "wires": []
+  },
+  {
+    "id": "b17b1c40.d81e4",
+    "type": "debug",
+    "z": "d44cc897.dc80c8",
+    "name": "",
+    "active": true,
+    "console": "false",
+    "complete": "true",
+    "x": 370,
+    "y": 360,
+    "wires": []
+  },
+  {
+    "id": "9736efe0.ae037",
+    "type": "mqtt in",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/all/mode",
+    "topic": "bottlelamp/+/mode",
+    "qos": "0",
+    "broker": "5178f1a8.e135a",
+    "x": 130,
+    "y": 300,
+    "wires": [
+      [
+        "b17b1c40.d81e4"
+      ]
+    ]
+  },
+  {
+    "id": "979dfc6f.639bf",
+    "type": "mqtt in",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/all/color",
+    "topic": "bottlelamp/+/color",
+    "qos": "0",
+    "broker": "5178f1a8.e135a",
+    "x": 130,
+    "y": 360,
+    "wires": [
+      [
+        "b17b1c40.d81e4"
+      ]
+    ]
+  },
+  {
+    "id": "b3d952a0.c9013",
+    "type": "mqtt in",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/all/speed",
+    "topic": "bottlelamp/+/speed",
+    "qos": "0",
+    "broker": "5178f1a8.e135a",
+    "x": 130,
+    "y": 420,
+    "wires": [
+      [
+        "b17b1c40.d81e4"
+      ]
+    ]
+  },
+  {
+    "id": "d39f1422.a6da18",
+    "type": "inject",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/bottlelamp_1627163/set/color",
+    "topic": "bottlelamp/bottlelamp_1627163/set/color",
+    "payload": "#00FFAA",
+    "payloadType": "str",
+    "repeat": "",
+    "crontab": "*/1 0 * * *",
+    "once": false,
+    "x": 207,
+    "y": 202,
+    "wires": [
+      [
+        "4be7a116.c79de"
+      ]
+    ]
+  },
+  {
+    "id": "28c96354.085f9c",
+    "type": "inject",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/bottlelamp_1627163/set/mode",
+    "topic": "bottlelamp/bottlelamp_1627163/set/mode",
+    "payload": "ColorFill",
+    "payloadType": "str",
+    "repeat": "",
+    "crontab": "*/1 0 * * *",
+    "once": false,
+    "x": 208,
+    "y": 162,
+    "wires": [
+      [
+        "4be7a116.c79de"
+      ]
+    ]
+  },
+  {
+    "id": "4be7a116.c79de",
+    "type": "mqtt out",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/bottlelamp_1627163/set",
+    "topic": "",
+    "qos": "0",
+    "retain": "false",
+    "broker": "5178f1a8.e135a",
+    "x": 541,
+    "y": 201,
+    "wires": []
+  },
+  {
+    "id": "ebf069c6.9e9048",
+    "type": "inject",
+    "z": "d44cc897.dc80c8",
+    "name": "bottlelamp/bottlelamp_1627163/set/speed",
+    "topic": "bottlelamp/bottlelamp_1627163/set/speed",
+    "payload": "255",
+    "payloadType": "str",
+    "repeat": "",
+    "crontab": "*/1 0 * * *",
+    "once": false,
+    "x": 207,
+    "y": 239,
+    "wires": [
+      [
+        "4be7a116.c79de"
+      ]
+    ]
+  },
+  {
+    "id": "5178f1a8.e135a",
+    "type": "mqtt-broker",
+    "z": "",
+    "broker": "mosquitto",
+    "port": "1883",
+    "clientid": "",
+    "usetls": false,
+    "compatmode": true,
+    "keepalive": "60",
+    "cleansession": true,
+    "willTopic": "",
+    "willQos": "0",
+    "willPayload": "",
+    "birthTopic": "",
+    "birthQos": "0",
+    "birthPayload": ""
+  }
+]

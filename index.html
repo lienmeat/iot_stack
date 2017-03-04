@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+	</head>
+	<body>
+		<div id="device_connect" >
+			<h3>Which device?</h3>
+			<div class="input-group">
+				<input id="device_name" type="text" class="form-control" name="device_name" placeholder="Device Id" />
+				<span class="input-group-btn">
+					<button id="set_device_name" class="btn" type="button" name="set_device_name">Connect</button>
+				</span>
+			</div>
+		</div>
+		<div id="lampcontrol">
+			<h3>Mode:</h3>
+			<select id="mode" class="form-control" onchange="sendMode();">
+				<option value="loading">Loading</option>
+				<option value="Solid Color">Solid Color</option>
+			</select>
+
+			<div id="colorselection">
+				<h3>Color:</h3>
+				<input id="color" type="color" onchange="sendColor();" value="#ffffff"/>
+			</div>
+
+			<h3>Animation Speed:</h3>
+			<div class="input-group">
+				<div class="input-group-addon">5</div>
+				<input id="speed" type="range" value="100" min="5" max="255" step="5" onchange="sendSpeed();" />
+				<div class="input-group-addon">255</div>
+			</div>
+			<label id="speeddisp">100</label>%
+		</div>
+		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+		<script type="text/javascript" src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
+		<script type="text/javascript" src="js/main.js"></script>
+		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="css/main.css" />
+	</body>
+</html>
