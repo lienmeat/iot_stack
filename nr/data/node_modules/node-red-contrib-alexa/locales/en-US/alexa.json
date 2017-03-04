@@ -1,0 +1,67 @@
+{
+    "common": {
+        "label": {
+            "name": "Name"
+        },
+        "errors": {
+            "no-alexa-response": "No Alexa response in node message",
+            "http-root-not-enabled": "Can not setup endpoint, httpNodeRoot not enabled"
+        }
+    },
+    "alexa-skill-config":{
+        "label": {
+            "skillname": "Skill Name",
+            "intents": "Intents",
+            "intent": "Intent",
+            "setup": "Setup",
+            "account-linking":"Account Linking",
+            "skill":"Skill"
+        },
+        "placeholder": {
+            "skillname": "New Skill Name"
+        },
+        "tip": {
+            "intents":"<b>Note:</b> Expects a json array of {name, options} intent objects. <a href=\"https://github.com/matt-kruse/alexa-app#schema-syntax\" target=\"_blank\">alexa-app Reference</a><br /><br />using <a href=\"https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/defining-the-voice-interface#h2_speech_input\" target=\"_blank\">Amazon Slot Types</a>",
+            "endpoint":"<b>Note:</b> This it the url you will enter at developer.amazon.com when you configure your skill."
+        },
+        "errors": {
+        }
+    },
+	"alexa-httpin":{
+        "label": {
+            "skill": "Skill",
+            "name": "Name"
+        },
+        "setby": "- set by msg.method -",
+        "basicauth": "Use basic authentication?",
+        "utf8": "a UTF-8 string",
+        "binary": "a binary buffer",
+        "json": "a parsed JSON object",
+        "tip": {
+            "in": "The url will be relative to ",
+            "res": "The messages sent to this node <b>must</b> originate from an <i>http input</i> node",
+            "req": "Tip: If the JSON parse fails the fetched string is returned as-is."
+        },
+        "httpreq": "http request",
+        "errors": {
+            "not-created": "Cannot create http-in node when httpNodeRoot set to false",
+            "missing-path": "missing path",
+            "no-response": "No response object",
+            "no-alexa-response": "No alexa response object",
+            "json-error": "JSON parse error",
+            "no-url": "No url specified",
+            "deprecated-call":"Deprecated call to __method__"
+        },
+        "status": {
+            "requesting": "requesting"
+        }
+    },
+    "alexa-card": {
+        "label": {
+            "name":"Name",
+            "object": "Card JSON"
+
+        },
+        "tip": "<b>Note:</b> <a href=\"https://developer.amazon.com/public/solutions/alexa/alexa-skills-kit/docs/alexa-skills-kit-interface-reference#card-object\" target=\"_blank\">Card Object Reference</a>"
+    }
+}
