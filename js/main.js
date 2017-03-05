@@ -1,4 +1,4 @@
-var ws_mqtt_host = "localhost:9883";
+var ws_mqtt_host = "ericslien.com:9883";
 
 var device_type = "bottlelamp";
 
