@@ -83,13 +83,16 @@ function getDeviceID() {
 
 function setDeviceID(id) {
 	if(id && id.length > 0) {
+		device_id = id;
 		localStorage.setItem("device_id", id);
 	}
 }
 
 function setupDevice(e) {
 	var dev_name = $("#device_name").val();
+	console.log(dev_name);
 	if( device_id.length == 0 && dev_name.length > 0) {
+		console.log("setting device id");
 		setDeviceID(dev_name);
 	}
 	if(device_id.length > 0) {
