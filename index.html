@@ -6,39 +6,67 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 	</head>
 	<body>
-		<div id="device_connect" >
-			<h3>Which device?</h3>
-			<div class="input-group">
-				<input id="device_name" type="text" class="form-control" name="device_name" placeholder="Device Id" />
-				<span class="input-group-btn">
-					<button id="set_device_name" class="btn" type="button" name="set_device_name">Connect</button>
-				</span>
+		<div id="device_connect" class="panel panel-info">
+			<div class="panel-heading">
+				<h3 class="panel-title">What device do you want to connect to?</h3>
+			</div>
+			<div class="panel-body">
+				<div class="input-group">
+					<input id="device_name" type="text" class="form-control" name="device_name" placeholder="Device Id" />
+					<span class="input-group-btn">
+						<button id="set_device_name" class="btn btn-info" type="button" name="set_device_name">Connect</button>
+					</span>
+				</div>
 			</div>
 		</div>
+		<div id="conf_panel_open" class="btn btn-info">Reconnect</div>
 		<div id="lampcontrol">
-			<h3>Mode:</h3>
-			<select id="mode" class="form-control" onchange="sendMode();">
-				<option value="loading">Loading</option>
-				<option value="Solid Color">Solid Color</option>
-			</select>
-
-			<div id="colorselection">
-				<h3>Color:</h3>
-				<input id="color" type="color" onchange="sendColor();" value="#ffffff"/>
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					Mode
+					<!-- <h3 class="panel-title">Mode</h3> -->
+				</div>
+				<div class="panel-body">
+					<select id="mode" class="form-control" onchange="sendMode();">
+						<option value="loading">Loading</option>
+					</select>
+				</div>
 			</div>
 
-			<h3>Animation Speed:</h3>
-			<div class="input-group">
-				<div class="input-group-addon">5</div>
-				<input id="speed" type="range" value="100" min="5" max="255" step="5" onchange="sendSpeed();" />
-				<div class="input-group-addon">255</div>
+			<div id="colorselection" class="panel panel-info">
+				<div class="panel-heading">
+					<!-- <h3 class="panel-title">Color</h3> -->
+					Color
+				</div>
+				<div class="panel-body">
+					<input id="color" type="color" onchange="sendColor();" value="#ffffff"/>
+				</div>
 			</div>
-			<label id="speeddisp">100</label>%
+			<div class="panel panel-info">
+				<div class="panel-heading">
+					<!-- <h3 class="panel-title">Animation Speed</h3> -->
+					Animation Speed
+				</div>
+				<div class="panel-body">
+					<div class="input-group">
+						<div class="input-group-addon">5</div>
+						<input id="speed" type="range" value="100" min="5" max="255" step="5" onchange="sendSpeed();" />
+						<div class="input-group-addon">255</div>
+					</div>
+					<label id="speeddisp">100</label>%
+				</div>
+			</div>
 		</div>
 		<script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
 		<script type="text/javascript" src="https://unpkg.com/mqtt/dist/mqtt.min.js"></script>
 		<script type="text/javascript" src="js/main.js"></script>
-		<link rel="stylesheet" href="css/bootstrap.min.css" />
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+		<!-- Optional theme -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 		<link rel="stylesheet" href="css/main.css" />
 	</body>
 </html>

@@ -1,3 +1,7 @@
+$(document).ready(function() {
+	getDeviceID();
+});
+
 var ws_mqtt_host = "ericslien.com:9883";
 
 var device_type = "bottlelamp";
@@ -21,7 +25,7 @@ var topics = {
 
 var current_mode = "loading";
 
-var mqttc = mqtt.connect('ws://' + ws_mqtt_host)
+var mqttc = mqtt.connect('ws://' + ws_mqtt_host);
 
 mqttc.on('connect', function () {
 	connectMQTT();
@@ -51,31 +55,61 @@ mqttc.on('error', function(err) {
 })
 
 $("#set_device_name").click(setupDevice);
+
+$("#conf_panel_open").click(function() {
+	$("#device_connect").show();
+	$("#lampcontrol").hide();
+	$("#conf_panel_open").hide();
+});
+
 $("#device_name").keypress(function(event) {
 	if(event.keycode == 13) {
 		setupDevice(e);
 	}
 });
 
+function getDeviceID() {
+	if( device_id.length <= 0 ) {
+		var id = localStorage.getItem("device_id");
+		if( id && id.length > 0 ) {
+			device_id = id;
+			$("#device_name").val(device_id);
+			connectMQTT();
+			return id;
+		}
+		return device_id;
+	}
+}
+
+function setDeviceID(id) {
+	if(id && id.length > 0) {
+		localStorage.setItem("device_id", id);
+	}
+}
 
 function setupDevice(e) {
-	device_id = $("#device_name").val();
-	for(var i in topics.publish) {
-		topics.publish[i] = topics.publish[i].replace("{device_id}", device_id);
+	var dev_name = $("#device_name").val();
+	if( device_id.length == 0 && dev_name.length > 0) {
+		setDeviceID(dev_name);
 	}
-	for(var i in topics.subscribe) {
-		topics.subscribe[i] = topics.subscribe[i].replace("{device_id}", device_id);
-		mqttc.subscribe(topics.subscribe[i]);
+	if(device_id.length > 0) {
+		for(var i in topics.publish) {
+			topics.publish[i] = topics.publish[i].replace("{device_id}", device_id);
+		}
+		for(var i in topics.subscribe) {
+			topics.subscribe[i] = topics.subscribe[i].replace("{device_id}", device_id);
+			mqttc.subscribe(topics.subscribe[i]);
+		}
+		getStatusUpdate();
+		$("#device_connect").hide();
+		$("#lampcontrol").show();
+		$("#conf_panel_open").show();
 	}
-	console.log(topics);
-	getStatusUpdate();
-	$("#device_connect").hide();
-	$("#lampcontrol").show();
 }
 
 function connectMQTT() {
 	mqttc.publish('presence', 'Hello mqtt');
-	getStatusUpdate();
+	setupDevice();
 }
 
 function onMode(message) {
