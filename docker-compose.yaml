@@ -3,7 +3,7 @@ nr:
   ports:
    - "1880:1880"
   volumes:
-   - ./nr/data:/data
+   - /data
   links:
    - mosquitto
 mosquitto:
