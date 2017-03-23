@@ -98,7 +98,7 @@ function setupDevice(e) {
 		setDeviceID(dev_name);
 	}
 	if(device_id.length > 0) {
-		topics = default_topics;
+		topics = $.extend(true, {}, default_topics);
 		for(var i in topics.publish) {
 			topics.publish[i] = topics.publish[i].replace("{device_id}", device_id);
 		}
