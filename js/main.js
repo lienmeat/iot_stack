@@ -91,7 +91,7 @@ function setDeviceID(id) {
 function setupDevice(e) {
 	var dev_name = $("#device_name").val();
 	console.log(dev_name);
-	if( device_id.length == 0 && dev_name.length > 0) {
+	if(dev_name.length > 0) {
 		console.log("setting device id");
 		setDeviceID(dev_name);
 	}
