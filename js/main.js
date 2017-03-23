@@ -8,7 +8,7 @@ var device_type = "bottlelamp";
 
 var device_id = "";
 
-var topics = {
+var default_topics = {
 	"publish": {
 		"topic_set_mode": device_type + "/{device_id}/set/mode",
 		"topic_set_speed": device_type + "/{device_id}/set/speed",
@@ -22,6 +22,8 @@ var topics = {
 		"topic_modelist": device_type + "/{device_id}/modelist"
 	}
 }
+
+var topics = {};
 
 var current_mode = "loading";
 
@@ -96,6 +98,7 @@ function setupDevice(e) {
 		setDeviceID(dev_name);
 	}
 	if(device_id.length > 0) {
+		topics = default_topics;
 		for(var i in topics.publish) {
 			topics.publish[i] = topics.publish[i].replace("{device_id}", device_id);
 		}
