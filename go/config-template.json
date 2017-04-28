@@ -1,0 +1,17 @@
+{
+  "sqldb": {
+    "driver": "mysql",
+    "user": "root",
+    "password": "123",
+    "host": "localhost",
+    "database": "iot",
+    "port": "3306",
+    "max_connections": 100
+  },
+  "log": {
+    "name": "iot",
+    "level": "debug"
+  },
+  "port": 8080,
+  "files_dir": "/path/to/iot/go/files"
+}

@@ -7,4 +7,4 @@ echo "Deploying $image_name"
 
 docker push $image_name
 
-ssh lienmeat@ericslien.com ~/iot/go/run.sh
+ssh lienmeat@ericslien.com "cd ~/iot/go && ./run.sh"
