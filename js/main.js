@@ -115,7 +115,6 @@ function setupDevice(e) {
 
 function connectMQTT() {
 	mqttc.publish('presence', 'Hello mqtt');
-	setupDevice();
 }
 
 function onMode(message) {
@@ -147,7 +146,7 @@ function sendSpeed() {
 	var speed = parseInt($('#speed').val());
 	$('#speeddisp').html(speed);
 	console.log("speed:" + speed);
-	mqttc.publish(topics.publish.topic_set_speed, speed);
+	mqttc.publish(topics.publish.topic_set_speed, "" + speed);
 }
 
 function sendColor() {
@@ -158,7 +157,8 @@ function sendColor() {
 
 function getStatusUpdate() {
 	if(device_id && device_id.length != 0) {
-		mqttc.publish(topics.publish.topic_statusupdate, 1);
+		console.log(topics.publish.topic_statusupdate);
+		mqttc.publish(topics.publish.topic_statusupdate, "1");
 	}
 }
 

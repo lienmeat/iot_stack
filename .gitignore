@@ -1,2 +1,11 @@
 iot.sublime-project
 iot.sublime-workspace
+go/bin
+go/pkg
+config.json
+data
+go/build
+go/dev
+go/files
+go/release/app
+*debug*

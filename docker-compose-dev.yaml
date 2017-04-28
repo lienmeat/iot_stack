@@ -1,0 +1,21 @@
+nr:
+  image: nodered/node-red-docker
+  ports:
+   - "1880:1880"
+  volumes:
+   - /data
+  links:
+   - mosquitto
+mosquitto:
+  image: jllopis/mosquitto
+  ports:
+   - 1883:1883
+   - 9883:9883
+db:
+ image: mysql:5.7
+ ports:
+  - "3306:3306"
+ environment:
+  - MYSQL_ROOT_PASSWORD=123
+ volumes:
+  - ./data/mysql:/var/lib/mysql

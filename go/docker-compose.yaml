@@ -1,0 +1,9 @@
+goiot:
+  image: iot/iot.ericslien.com:master
+  ports:
+    - "8080:8080"
+  volumes:
+    - ./files:/app/files
+    - ./config.json:/app/config.json
+  environment:
+    - CONFIGFILE=/app/config.json
